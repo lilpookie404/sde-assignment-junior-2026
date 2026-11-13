@@ -3,7 +3,7 @@
 ## Candidate
 - **Name:** Vaishnavi Awadhiya
 - **Assignment chosen:** A (Data)
-- **Time spent (honest estimate):** Approximately 4 hours, AI-assisted and not stopwatch-tracked
+- **Time spent (honest estimate):** Approximately 5.5 hours, AI-assisted and not stopwatch-tracked
 
 ## How to run
 ```bash
