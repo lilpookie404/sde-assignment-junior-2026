@@ -4,17 +4,26 @@ AI tools are allowed. We want to know **how** you used them, because using them 
 skill. Honest answers are never held against you. Discovering undisclosed use is.
 
 ## Tools used
-_e.g. Claude, Cursor, Copilot, ChatGPT, or "none"_
+OpenAI Codex.
 
 ## What I used them for
-_e.g. "scaffolded the FastAPI receiver", "explained Temporal activity retries", "wrote the first
-draft of the phone-normalisation tests"_
+Repository inspection, implementation drafts, focused test generation, running the test suite,
+security/code review, and checking the generated small-dataset reports.
 
 ## What I wrote or decided myself
-_The parts that are your own thinking: design, data model, edge-case handling..._
+I supplied the incremental requirements and reviewed the design at each boundary: normalization,
+PII protection, SQLite identity, lead merging, event reconciliation, and report behavior. I chose
+the final scope and required purpose-separated lookup keys, transactional file markers, sanitized
+event storage, and exact contract tests.
 
 ## Where the AI was wrong or unhelpful
-_At least one example of output you rejected or had to fix, and how you noticed._
+The initial lookup design reused the Fernet key material directly for HMAC. I required a separate
+purpose-derived HMAC key (`phone-lookup-v1`) after noticing that this coupled encryption and lookup
+uses. Review also found that existing key-file permissions needed hardening and that rollback
+tests did not initially exercise counters and rejection rows strongly enough; both were fixed.
 
 ## How I verified AI-generated code
-_Tests, manual runs, reading it line by line..._
+I reviewed the code and diffs, ran focused tests after each slice, ran the full pytest suite, and
+executed the documented command against both generated drops. I inspected all five output files,
+checked row counts and data-quality totals, and reran the pipeline to confirm byte-identical
+outputs.
